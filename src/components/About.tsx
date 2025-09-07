@@ -52,21 +52,21 @@ export const About = () => {
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               Crafting Visual 
               <span className="block text-primary">
                 Excellence
               </span>
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
               At Grain Theory, we believe every frame tells a story. Founded on the principle 
               that visual content should not just capture attention but create lasting 
               emotional connections, we specialize in high-end commercial photography and 
               video production.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
               Our approach combines technical expertise with creative vision, delivering 
               content that elevates brands and drives meaningful engagement with audiences.
             </p>

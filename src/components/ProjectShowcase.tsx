@@ -72,24 +72,24 @@ export const ProjectShowcase = () => {
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
             Our <span className="text-primary">Work</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Explore our collection of visual stories crafted for forward-thinking brands
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center justify-center mb-12">
-          <div className="editor-panel p-1 rounded-lg inline-flex">
+        {/* Filter Tabs - Mobile Responsive */}
+        <div className="flex items-center justify-center mb-12 px-4">
+          <div className="editor-panel p-1 rounded-lg inline-flex flex-wrap gap-1">
             {filters.map((filter) => (
               <Button
                 key={filter}
                 variant={activeFilter === filter ? "timeline" : "ghost"}
                 size="sm"
-                className={`transition-all duration-300 ${
+                className={`transition-all duration-300 text-xs sm:text-sm ${
                   activeFilter === filter 
                     ? "bg-primary text-primary-foreground shadow-glow" 
                     : ""

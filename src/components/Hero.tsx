@@ -34,45 +34,45 @@ export const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight">
             <span className="block text-primary font-bold">
               Grain Theory
             </span>
-            <span className="block text-foreground text-3xl md:text-4xl lg:text-5xl mt-2 font-normal">
+            <span className="block text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2 font-light">
               Visual Storytelling Redefined
             </span>
           </h1>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed px-4">
             Creating cinematic experiences that captivate audiences and elevate brands through 
             innovative photography and video production.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button variant="hero" size="lg" className="group">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 px-4">
+            <Button variant="hero" size="lg" className="group w-full sm:w-auto">
               Start Your Project
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button variant="outline" size="lg" className="group">
+            <Button variant="outline" size="lg" className="group w-full sm:w-auto">
               <Play className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
               Watch Reel
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-lg mx-auto px-4">
             {[
               { number: '50+', label: 'Projects' },
               { number: '25+', label: 'Clients' },
               { number: '3+', label: 'Years' },
             ].map((stat, index) => (
               <div key={index} className="text-center animate-slide-in-left" style={{ animationDelay: `${index * 0.2}s` }}>
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1">
                   {stat.number}
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-xs sm:text-sm text-muted-foreground">
                   {stat.label}
                 </div>
               </div>

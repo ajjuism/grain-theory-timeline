@@ -23,14 +23,14 @@ export const Contact = () => {
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               Ready to Create 
               <span className="block text-primary">
                 Something Amazing?
               </span>
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
               Let's discuss your next project. Whether you need commercial photography, 
               video production, or creative direction, we're here to bring your vision to life.
             </p>
@@ -54,14 +54,14 @@ export const Contact = () => {
               ))}
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Mobile Responsive */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
+              <Button variant="hero" size="lg" className="group w-full sm:w-auto">
                 <Mail className="w-5 h-5 mr-2" />
                 Send Message
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
                 <Calendar className="w-5 h-5 mr-2" />
                 Schedule Call
               </Button>
