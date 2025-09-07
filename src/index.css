@@ -16,21 +16,21 @@
     --popover: 220 13% 6%;
     --popover-foreground: 210 40% 98%;
 
-    /* Primary - Warm Orange (Timeline/Playhead Color) */
-    --primary: 15 100% 60%;
+    /* Primary - Subtle Professional Orange */
+    --primary: 25 85% 55%;
     --primary-foreground: 220 13% 4%;
 
-    /* Secondary - Cool Editor Blue */
-    --secondary: 213 94% 68%;
-    --secondary-foreground: 220 13% 4%;
+    /* Secondary - Professional Blue Gray */
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 210 40% 98%;
 
     /* Muted - Editor Panel Colors */
     --muted: 220 13% 10%;
     --muted-foreground: 215 16% 65%;
 
-    /* Accent - Highlight Orange */
-    --accent: 15 100% 60%;
-    --accent-foreground: 220 13% 4%;
+    /* Accent - Refined Highlight */
+    --accent: 220 13% 10%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
@@ -47,15 +47,15 @@
     --timeline-bg: 220 13% 5%;
     --playhead: 15 100% 60%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(220 13% 4%) 0%, hsl(220 13% 8%) 100%);
+    /* Gradients - Much more subtle */
+    --gradient-hero: linear-gradient(135deg, hsl(220 13% 4%) 0%, hsl(220 13% 6%) 100%);
     --gradient-panel: linear-gradient(180deg, hsl(220 13% 8%) 0%, hsl(220 13% 6%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(15 100% 60%) 0%, hsl(213 94% 68%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(25 85% 55%) 0%, hsl(215 25% 27%) 100%);
     
-    /* Shadows */
-    --shadow-panel: 0 8px 32px hsl(220 13% 2% / 0.5);
-    --shadow-timeline: 0 4px 16px hsl(220 13% 2% / 0.3);
-    --shadow-glow: 0 0 24px hsl(15 100% 60% / 0.2);
+    /* Shadows - More refined */
+    --shadow-panel: 0 4px 16px hsl(220 13% 2% / 0.3);
+    --shadow-timeline: 0 2px 8px hsl(220 13% 2% / 0.2);
+    --shadow-glow: 0 0 16px hsl(25 85% 55% / 0.15);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +78,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light theme maintains professional look but lighter */
+  /* Light theme maintains professional look */
   .light {
     --background: 210 40% 98%;
     --foreground: 220 13% 15%;
@@ -86,17 +86,17 @@
     --card-foreground: 220 13% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 15%;
-    --primary: 15 100% 55%;
+    --primary: 25 85% 50%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 213 94% 60%;
+    --secondary: 215 25% 20%;
     --secondary-foreground: 210 40% 98%;
     --muted: 220 13% 95%;
     --muted-foreground: 220 13% 45%;
-    --accent: 15 100% 55%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 220 13% 90%;
+    --accent-foreground: 220 13% 15%;
     --border: 220 13% 85%;
     --input: 220 13% 90%;
-    --ring: 15 100% 55%;
+    --ring: 25 85% 50%;
     --editor-panel: 220 13% 96%;
     --editor-panel-dark: 220 13% 92%;
     --timeline-bg: 220 13% 94%;

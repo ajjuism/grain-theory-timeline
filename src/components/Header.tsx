@@ -21,7 +21,7 @@ export const Header = () => {
             <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
               <Film className="w-6 h-6 text-primary" />
             </div>
-            <span className="text-xl font-bold gradient-accent bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-foreground">
               Grain Theory
             </span>
           </div>

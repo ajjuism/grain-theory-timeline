@@ -54,7 +54,7 @@ export const About = () => {
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Crafting Visual 
-              <span className="block gradient-accent bg-clip-text text-transparent">
+              <span className="block text-primary">
                 Excellence
               </span>
             </h2>

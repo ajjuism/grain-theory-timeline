@@ -16,9 +16,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // Editor-inspired variants
-        editor: "bg-editor-panel text-foreground border border-border hover:bg-editor-panel-dark hover:border-primary/50 playhead",
-        hero: "gradient-accent text-primary-foreground hover:shadow-glow hover:scale-105 border-0 font-semibold",
-        timeline: "bg-editor-timeline text-muted-foreground hover:text-foreground hover:bg-primary/20 border border-border/50",
+        editor: "bg-editor-panel text-foreground border border-border hover:bg-editor-panel-dark hover:border-primary/30 playhead",
+        hero: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-glow border-0 font-semibold",
+        timeline: "bg-editor-timeline text-muted-foreground hover:text-foreground hover:bg-primary/10 border border-border/50",
       },
       size: {
         default: "h-10 px-4 py-2",

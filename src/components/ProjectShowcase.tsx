@@ -73,7 +73,7 @@ export const ProjectShowcase = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Our <span className="gradient-accent bg-clip-text text-transparent">Work</span>
+            Our <span className="text-primary">Work</span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

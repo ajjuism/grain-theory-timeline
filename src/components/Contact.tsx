@@ -6,8 +6,8 @@ import { Mail, Phone, Calendar, ArrowRight, Send } from 'lucide-react';
 export const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-background relative overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 gradient-hero opacity-50" />
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-muted/30" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Timeline Header */}
@@ -25,7 +25,7 @@ export const Contact = () => {
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Ready to Create 
-              <span className="block gradient-accent bg-clip-text text-transparent">
+              <span className="block text-primary">
                 Something Amazing?
               </span>
             </h2>

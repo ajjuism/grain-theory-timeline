@@ -14,8 +14,7 @@ export const Hero = () => {
           alt="Grain Theory Production"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 gradient-hero opacity-90" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       {/* Timeline Header */}
@@ -36,7 +35,7 @@ export const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-            <span className="block gradient-accent bg-clip-text text-transparent">
+            <span className="block text-primary font-bold">
               Grain Theory
             </span>
             <span className="block text-foreground text-3xl md:text-4xl lg:text-5xl mt-2 font-normal">
