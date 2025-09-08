@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Timeline } from './Timeline';
+import { ContactDialog } from '@/components/ContactDialog';
 import { ArrowRight, Play, Camera, Video, Award, Users } from 'lucide-react';
 import heroImage from '@/assets/hero-image.jpg';
 
 export const Hero = () => {
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background with Gradient Overlay */}
@@ -25,7 +28,7 @@ export const Hero = () => {
 
       {/* Main Content Container */}
       <div className="relative z-10 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32">
           <div className="grid lg:grid-cols-5 gap-16 items-center">
             
             {/* Left Side - Content */}
@@ -53,7 +56,12 @@ export const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button variant="hero" size="lg" className="group text-base px-8 py-4">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="group text-base px-8 py-4"
+                  onClick={() => setIsContactDialogOpen(true)}
+                >
                   Start Project
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -65,7 +73,7 @@ export const Hero = () => {
             </div>
 
             {/* Right Side - Services */}
-            <div className="lg:col-span-2 space-y-6 animate-slide-in-left">
+            <div className="lg:col-span-2 space-y-6 animate-slide-in-left mb-12 lg:mb-0">
               {[
                 { 
                   icon: Camera, 
@@ -98,10 +106,10 @@ export const Hero = () => {
                       <service.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors font-display">
                         {service.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-sm text-muted-foreground leading-relaxed font-body">
                         {service.description}
                       </p>
                     </div>
@@ -112,6 +120,11 @@ export const Hero = () => {
           </div>
         </div>
       </div>
+
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen} 
+      />
     </section>
   );
 };

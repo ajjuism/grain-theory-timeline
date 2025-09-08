@@ -14,13 +14,13 @@ export const Newsletter = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           <div className="space-y-6 mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium leading-tight">
               Stay in the <span className="text-primary">Loop</span>
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed font-body">
+            <p className="text-xl text-muted-foreground leading-relaxed font-body">
               Get insights on visual storytelling, industry trends, behind-the-scenes content, 
               and updates on our latest projects delivered to your inbox.
             </p>

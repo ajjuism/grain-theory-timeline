@@ -27,7 +27,7 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="pt-8 pb-20 bg-card relative overflow-hidden">
+    <section id="about" className="pt-16 sm:pt-20 pb-12 sm:pb-20 bg-card relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="grid grid-cols-12 gap-4 h-full">
@@ -37,32 +37,32 @@ export const About = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="animate-slide-in-left">
-            <div className="inline-flex items-center gap-2 editor-panel px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 editor-panel px-4 py-2 rounded-full mb-4 sm:mb-6">
               <div className="w-2 h-2 bg-secondary rounded-full animate-timeline-pulse" />
               <span className="text-sm font-medium text-muted-foreground">
                 About Us
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium mb-4 sm:mb-6">
               Crafting Visual 
               <span className="block text-primary">
                 Excellence
               </span>
             </h2>
 
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed font-body">
+            <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-8 leading-relaxed font-body">
               At Grain Theory, we believe every frame tells a story. Founded on the principle 
               that visual content should not just capture attention but create lasting 
               emotional connections, we specialize in high-end commercial photography and 
               video production.
             </p>
 
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed font-body">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 leading-relaxed font-body">
               Our approach combines technical expertise with creative vision, delivering 
               content that elevates brands and drives meaningful engagement with audiences.
             </p>
@@ -73,19 +73,19 @@ export const About = () => {
           </div>
 
           {/* Right Content - Services */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:mt-0">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:bg-background/70 transition-all duration-300 group animate-fade-in"
+                className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 sm:p-6 hover:border-primary/30 hover:bg-background/70 transition-all duration-300 group animate-fade-in w-full mx-0"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
-                    <service.icon className="w-6 h-6 text-primary" />
+                <div className="mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
+                    <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                   </div>
                 </div>
-                <h3 className="text-lg font-medium mb-3 text-foreground group-hover:text-primary transition-colors duration-300 font-display">
+                <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors duration-300 font-display">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed font-body">
@@ -97,8 +97,8 @@ export const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-20 pt-12 border-t border-border/50">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border/50">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
               { number: '150+', label: 'Projects Completed' },
               { number: '50+', label: 'Happy Clients' },
@@ -106,10 +106,10 @@ export const About = () => {
               { number: '5+', label: 'Years Experience' },
             ].map((stat, index) => (
               <div key={index} className="text-center group animate-fade-in" style={{ animationDelay: `${index * 0.1 + 0.5}s` }}>
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2 font-display group-hover:scale-105 transition-transform duration-300">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-1 sm:mb-2 font-display group-hover:scale-105 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <div className="text-sm text-muted-foreground font-body">
+                <div className="text-xs sm:text-sm text-muted-foreground font-body">
                   {stat.label}
                 </div>
               </div>

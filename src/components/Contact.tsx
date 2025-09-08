@@ -57,11 +57,6 @@ export const Contact = () => {
 
             {/* Quick Action Buttons */}
             <div className="space-y-4">
-              <Button variant="hero" size="lg" className="group w-full">
-                <Mail className="w-5 h-5 mr-2" />
-                Send Quick Message
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
               <Button variant="outline" size="lg" className="w-full group">
                 <Phone className="w-5 h-5 mr-2" />
                 Schedule a Call

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { ContactDialog } from '@/components/ContactDialog';
 import { Menu, X } from 'lucide-react';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +71,7 @@ export const Header = () => {
                 transition-all duration-300 text-sm px-6
                 ${isScrolled ? 'py-2' : 'py-2.5'}
               `}
+              onClick={() => setIsContactDialogOpen(true)}
             >
               Start Project
             </Button>
@@ -107,13 +110,26 @@ export const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button variant="hero" size="sm" className="mt-3 w-full text-sm">
+              <Button 
+                variant="hero" 
+                size="sm" 
+                className="mt-3 w-full text-sm"
+                onClick={() => {
+                  setIsContactDialogOpen(true);
+                  setIsMenuOpen(false);
+                }}
+              >
                 Start Project
               </Button>
             </nav>
           </div>
         )}
       </div>
+
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen} 
+      />
     </header>
   );
 };
