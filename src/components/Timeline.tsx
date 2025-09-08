@@ -15,7 +15,7 @@ export const Timeline = ({ className = "" }: TimelineProps) => {
             {Array.from({ length: 12 }, (_, i) => (
               <div key={i} className="flex flex-col items-center">
                 <div className="w-px h-2 bg-muted-foreground/50" />
-                <span className="text-xs text-muted-foreground mt-1">
+                <span className="text-xs text-muted-foreground mt-1 font-mono">
                   {String(i * 5).padStart(2, '0')}:00
                 </span>
               </div>

@@ -1,98 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Grain Theory - Professional Cinematic Design System */
+/* Grain Theory - Professional Dark Theme with Premium Typography */
 
 @layer base {
   :root {
-    /* Core Cinematic Dark Theme */
-    --background: 213 30% 7%;
-    --foreground: 210 40% 95%;
+    /* Core Dark Black Theme */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 95%;
 
-    --card: 213 30% 9%;
-    --card-foreground: 210 40% 95%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 213 30% 9%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 95%;
 
-    /* Primary - Cinematic Gold */
-    --primary: 45 90% 65%;
-    --primary-foreground: 213 30% 7%;
+    /* Primary - Elegant Gold Accent */
+    --primary: 45 85% 70%;
+    --primary-foreground: 0 0% 3%;
 
-    /* Secondary - Deep Blue */
-    --secondary: 213 50% 20%;
-    --secondary-foreground: 210 40% 95%;
+    /* Secondary - Charcoal Gray */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    /* Muted - Editor Panel Colors */
-    --muted: 213 30% 12%;
-    --muted-foreground: 215 16% 65%;
+    /* Muted - Dark Gray Panels */
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 65%;
 
-    /* Accent - Refined Blue */
-    --accent: 213 40% 15%;
-    --accent-foreground: 210 40% 95%;
+    /* Accent - Refined Dark Gray */
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 95%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 213 30% 15%;
-    --input: 213 30% 12%;
-    --ring: 45 90% 65%;
+    --border: 0 0% 12%;
+    --input: 0 0% 8%;
+    --ring: 45 85% 70%;
 
     --radius: 0.375rem;
 
     /* Custom Design Tokens */
-    --editor-panel: 213 30% 10%;
-    --editor-panel-dark: 213 30% 8%;
-    --timeline-bg: 213 30% 9%;
-    --playhead: 45 90% 65%;
+    --editor-panel: 0 0% 6%;
+    --editor-panel-dark: 0 0% 4%;
+    --timeline-bg: 0 0% 5%;
+    --playhead: 45 85% 70%;
     
-    /* Subtle Professional Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(213 30% 7%) 0%, hsl(213 30% 10%) 100%);
-    --gradient-panel: linear-gradient(180deg, hsl(213 30% 10%) 0%, hsl(213 30% 8%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(45 90% 65%) 0%, hsl(213 50% 20%) 100%);
+    /* Elegant Dark Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 3%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-panel: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(45 85% 70%) 0%, hsl(0 0% 15%) 100%);
     
     /* Refined Shadows */
-    --shadow-panel: 0 4px 16px hsl(213 30% 2% / 0.4);
-    --shadow-timeline: 0 2px 8px hsl(213 30% 2% / 0.3);
-    --shadow-glow: 0 0 20px hsl(45 90% 65% / 0.1);
+    --shadow-panel: 0 4px 16px hsl(0 0% 0% / 0.5);
+    --shadow-timeline: 0 2px 8px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 20px hsl(45 85% 70% / 0.15);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-panel: all 0.2s ease-out;
 
-    --sidebar-background: 213 30% 9%;
-    --sidebar-foreground: 210 40% 95%;
-    --sidebar-primary: 45 90% 65%;
-    --sidebar-primary-foreground: 213 30% 7%;
-    --sidebar-accent: 213 30% 12%;
-    --sidebar-accent-foreground: 210 40% 95%;
-    --sidebar-border: 213 30% 15%;
-    --sidebar-ring: 45 90% 65%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 45 85% 70%;
+    --sidebar-primary-foreground: 0 0% 3%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 45 85% 70%;
   }
 
   /* Light theme for professional look */
   .light {
-    --background: 210 40% 98%;
-    --foreground: 213 30% 15%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 213 30% 15%;
+    --card-foreground: 0 0% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 213 30% 15%;
-    --primary: 45 90% 55%;
-    --primary-foreground: 213 30% 7%;
-    --secondary: 213 50% 15%;
-    --secondary-foreground: 210 40% 95%;
-    --muted: 213 20% 95%;
-    --muted-foreground: 213 20% 45%;
-    --accent: 213 20% 90%;
-    --accent-foreground: 213 30% 15%;
-    --border: 213 20% 85%;
-    --input: 213 20% 90%;
-    --ring: 45 90% 55%;
-    --editor-panel: 213 20% 96%;
-    --editor-panel-dark: 213 20% 92%;
-    --timeline-bg: 213 20% 94%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 45 85% 55%;
+    --primary-foreground: 0 0% 7%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 15%;
+    --border: 0 0% 85%;
+    --input: 0 0% 90%;
+    --ring: 45 85% 55%;
+    --editor-panel: 0 0% 96%;
+    --editor-panel-dark: 0 0% 92%;
+    --timeline-bg: 0 0% 94%;
   }
 }
 
@@ -101,9 +103,34 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'DM Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  }
+
+  .font-display {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   }
 
   /* Editor-inspired utility classes */

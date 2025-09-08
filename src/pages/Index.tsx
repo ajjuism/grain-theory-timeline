@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero';
 import { ProjectShowcase } from '@/components/ProjectShowcase';
 import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
+import { Newsletter } from '@/components/Newsletter';
 import { Footer } from '@/components/Footer';
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
         <ProjectShowcase />
         <About />
         <Contact />
+        <Newsletter />
       </main>
       <Footer />
     </div>

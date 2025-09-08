@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Timeline } from './Timeline';
 import { Camera, Video, Award, Users } from 'lucide-react';
 
 export const About = () => {
@@ -28,7 +27,7 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-card relative overflow-hidden">
+    <section id="about" className="pt-8 pb-20 bg-card relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="grid grid-cols-12 gap-4 h-full">
@@ -39,9 +38,6 @@ export const About = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Timeline Header */}
-        <Timeline className="mb-16" />
-
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="animate-slide-in-left">
@@ -52,21 +48,21 @@ export const About = () => {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium mb-6">
               Crafting Visual 
               <span className="block text-primary">
                 Excellence
               </span>
             </h2>
 
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed font-body">
               At Grain Theory, we believe every frame tells a story. Founded on the principle 
               that visual content should not just capture attention but create lasting 
               emotional connections, we specialize in high-end commercial photography and 
               video production.
             </p>
 
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed font-body">
               Our approach combines technical expertise with creative vision, delivering 
               content that elevates brands and drives meaningful engagement with audiences.
             </p>
@@ -81,18 +77,18 @@ export const About = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="editor-panel p-6 hover:bg-editor-panel-dark transition-all duration-300 hover-glow group animate-fade-in"
+                className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:bg-background/70 transition-all duration-300 group animate-fade-in"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
                     <service.icon className="w-6 h-6 text-primary" />
                   </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-medium mb-3 text-foreground group-hover:text-primary transition-colors duration-300 font-display">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed font-body">
                   {service.description}
                 </p>
               </div>
@@ -101,19 +97,19 @@ export const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-20 pt-12 border-t border-border">
+        <div className="mt-20 pt-12 border-t border-border/50">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: '50+', label: 'Projects Completed', suffix: '' },
-              { number: '25+', label: 'Happy Clients', suffix: '' },
-              { number: '100%', label: 'Satisfaction Rate', suffix: '' },
-              { number: '3+', label: 'Years Experience', suffix: '' },
+              { number: '150+', label: 'Projects Completed' },
+              { number: '50+', label: 'Happy Clients' },
+              { number: '98%', label: 'Client Satisfaction' },
+              { number: '5+', label: 'Years Experience' },
             ].map((stat, index) => (
-              <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1 + 0.5}s` }}>
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+              <div key={index} className="text-center group animate-fade-in" style={{ animationDelay: `${index * 0.1 + 0.5}s` }}>
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2 font-display group-hover:scale-105 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm text-muted-foreground font-body">
                   {stat.label}
                 </div>
               </div>

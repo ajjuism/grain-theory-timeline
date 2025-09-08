@@ -1,152 +1,156 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Timeline } from './Timeline';
-import { Mail, Phone, Calendar, ArrowRight, Send } from 'lucide-react';
+import { Mail, Phone, Clock, ArrowRight, Send } from 'lucide-react';
 
 export const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-background relative overflow-hidden">
-      {/* Subtle background */}
-      <div className="absolute inset-0 bg-muted/30" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Timeline Header */}
-        <Timeline className="mb-16" />
+    <section id="contact" className="py-16 bg-card border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16 space-y-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium leading-tight">
+            Let's Create <span className="text-primary">Together</span>
+          </h2>
+          
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Ready to bring your vision to life? Get in touch and let's discuss your next project.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Content */}
-          <div className="animate-slide-in-left">
-            <div className="inline-flex items-center gap-2 editor-panel px-4 py-2 rounded-full mb-6">
-              <div className="w-2 h-2 bg-primary rounded-full animate-timeline-pulse" />
-              <span className="text-sm font-medium text-muted-foreground">
-                Get In Touch
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-              Ready to Create 
-              <span className="block text-primary">
-                Something Amazing?
-              </span>
-            </h2>
-
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed">
-              Let's discuss your next project. Whether you need commercial photography, 
-              video production, or creative direction, we're here to bring your vision to life.
-            </p>
-
-            {/* Contact Info */}
-            <div className="space-y-6 mb-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Content - Contact Info */}
+          <div className="space-y-6 animate-slide-in-left">
+            <div className="space-y-6">
               {[
-                { icon: Mail, label: 'Email', value: 'hello@graintheory.com' },
-                { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-                { icon: Calendar, label: 'Response Time', value: 'Within 24 hours' },
+                { icon: Mail, label: 'Email', value: 'hello@graintheory.com', href: 'mailto:hello@graintheory.com' },
+                { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' },
+                { icon: Clock, label: 'Response Time', value: 'Within 24 hours', href: null },
               ].map((contact, index) => (
-                <div key={index} className="flex items-center gap-4 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                    <contact.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">{contact.label}</div>
-                    <div className="font-medium text-foreground">{contact.value}</div>
-                  </div>
+                <div key={index} className="group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  {contact.href ? (
+                    <a 
+                      href={contact.href}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-background/60 backdrop-blur-sm border border-primary/20 hover:border-primary/40 hover:bg-background/80 transition-all duration-300 shadow-sm hover:shadow-md"
+                    >
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                        <contact.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-sm text-muted-foreground font-body">{contact.label}</div>
+                        <div className="font-medium text-foreground">{contact.value}</div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-background/60 backdrop-blur-sm border border-primary/20 shadow-sm">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                        <contact.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-sm text-muted-foreground font-body">{contact.label}</div>
+                        <div className="font-medium text-foreground">{contact.value}</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
 
-            {/* CTA Buttons - Mobile Responsive */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group w-full sm:w-auto">
+            {/* Quick Action Buttons */}
+            <div className="space-y-4">
+              <Button variant="hero" size="lg" className="group w-full">
                 <Mail className="w-5 h-5 mr-2" />
-                Send Message
+                Send Quick Message
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                <Calendar className="w-5 h-5 mr-2" />
-                Schedule Call
+              <Button variant="outline" size="lg" className="w-full group">
+                <Phone className="w-5 h-5 mr-2" />
+                Schedule a Call
               </Button>
             </div>
           </div>
 
           {/* Right Content - Contact Form */}
-          <div className="editor-panel p-8 hover-glow animate-fade-in">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-2">Start Your Project</h3>
-              <p className="text-muted-foreground">
-                Tell us about your vision and we'll get back to you soon.
-              </p>
-            </div>
+          <div className="animate-fade-in">
+            <div className="bg-card/60 backdrop-blur-sm border border-primary/15 rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-lg">
+              <div className="mb-6">
+                <h3 className="text-xl font-display font-medium mb-2">Start Your Project</h3>
+                <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                  Tell us about your vision and we'll get back to you with a proposal.
+                </p>
+              </div>
 
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2.5 font-body">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 bg-background/60 border border-primary/10 hover:border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300 placeholder:text-muted-foreground/60 text-sm shadow-sm"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2.5 font-body">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 bg-background/60 border border-primary/10 hover:border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300 placeholder:text-muted-foreground/60 text-sm shadow-sm"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    First Name
+                  <label className="block text-sm font-medium text-foreground mb-2.5 font-body">
+                    Project Type
                   </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 bg-input border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="John"
+                  <select className="w-full px-4 py-3 bg-background/60 border border-primary/10 hover:border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300 text-sm shadow-sm">
+                    <option value="">Select project type</option>
+                    <option value="photography">Commercial Photography</option>
+                    <option value="video">Video Production</option>
+                    <option value="both">Photography & Video</option>
+                    <option value="creative">Creative Direction</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2.5 font-body">
+                    Project Details
+                  </label>
+                  <textarea
+                    rows={3}
+                    className="w-full px-4 py-3 bg-background/60 border border-primary/10 hover:border-primary/20 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all duration-300 resize-none placeholder:text-muted-foreground/60 text-sm shadow-sm"
+                    placeholder="Brief description of your project vision and requirements..."
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 bg-input border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="Doe"
-                  />
+
+                <Button variant="hero" size="default" className="w-full group text-sm py-3">
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Project Brief
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </form>
+
+              {/* Trust Indicators */}
+              <div className="mt-6 pt-4 border-t border-border/30">
+                <div className="flex items-center justify-center gap-6 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    <span>Free consultation</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    <span>24h response</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    <span>No commitment</span>
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 bg-input border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="john@company.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Project Type
-                </label>
-                <select className="w-full px-4 py-3 bg-input border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                  <option>Select project type</option>
-                  <option>Commercial Photography</option>
-                  <option>Video Production</option>
-                  <option>Both Photography & Video</option>
-                  <option>Creative Consultation</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Project Details
-                </label>
-                <textarea
-                  rows={4}
-                  className="w-full px-4 py-3 bg-input border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                  placeholder="Tell us about your project, timeline, and goals..."
-                />
-              </div>
-
-              <Button variant="hero" size="lg" className="w-full group">
-                <Send className="w-5 h-5 mr-2" />
-                Send Project Brief
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </form>
-
-            {/* Timeline indicator */}
-            <div className="mt-6 pt-6 border-t border-border">
-              <div className="timeline-bar h-1 rounded-full">
-                <div className="h-full w-3/4 bg-primary rounded-full playhead" />
               </div>
             </div>
           </div>
