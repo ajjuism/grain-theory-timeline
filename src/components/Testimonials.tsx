@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     company: "Modern Brands Co.",
     content: "Grain Theory transformed our brand vision into stunning visual content. Their attention to detail and creative approach exceeded our expectations. The team's professionalism and ability to capture our essence was remarkable.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
   },
   {
     id: 2,
