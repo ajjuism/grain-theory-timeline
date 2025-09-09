@@ -10,6 +10,7 @@ interface ProjectCardProps {
   imageUrl: string;
   isVideo?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
 export const ProjectCard = ({ 
@@ -19,10 +20,14 @@ export const ProjectCard = ({
   year,
   imageUrl, 
   isVideo = false,
-  className = "" 
+  className = "",
+  onClick
 }: ProjectCardProps) => {
   return (
-    <div className={`group relative overflow-hidden rounded-lg bg-background border border-border hover:border-primary/30 transition-all duration-300 hover-glow ${className}`}>
+    <div 
+      className={`group relative overflow-hidden rounded-lg bg-background border border-border hover:border-primary/30 transition-all duration-300 hover-glow ${className} ${onClick ? 'cursor-pointer' : ''}`}
+      onClick={onClick}
+    >
       {/* Project Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img 

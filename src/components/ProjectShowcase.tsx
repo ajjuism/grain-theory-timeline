@@ -2,72 +2,19 @@ import React, { useState } from 'react';
 import { ProjectCard } from './ProjectCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Filter } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { projects, categories } from '@/data/projects';
 
 export const ProjectShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const navigate = useNavigate();
 
-  const projects = [
-    {
-      id: 1,
-      title: 'Brand Identity Campaign',
-      category: 'Photography',
-      client: 'Tech Startup',
-      imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop&crop=entropy&auto=format&q=80',
-      isVideo: false,
-      year: '2024'
-    },
-    {
-      id: 2,
-      title: 'Corporate Documentary',
-      category: 'Video',
-      client: 'Fortune 500',
-      imageUrl: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&h=400&fit=crop&crop=entropy&auto=format&q=80',
-      isVideo: true,
-      year: '2024'
-    },
-    {
-      id: 3,
-      title: 'Product Launch Series',
-      category: 'Photography',
-      client: 'Consumer Brand',
-      imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop&crop=entropy&auto=format&q=80',
-      isVideo: false,
-      year: '2023'
-    },
-    {
-      id: 4,
-      title: 'Executive Profiles',
-      category: 'Photography',
-      client: 'Investment Firm',
-      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=entropy&auto=format&q=80',
-      isVideo: false,
-      year: '2024'
-    },
-    {
-      id: 5,
-      title: 'Brand Story Film',
-      category: 'Video',
-      client: 'Luxury Goods',
-      imageUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&h=400&fit=crop&crop=entropy&auto=format&q=80',
-      isVideo: true,
-      year: '2023'
-    },
-    {
-      id: 6,
-      title: 'Event Documentation',
-      category: 'Video',
-      client: 'Conference',
-      imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop&crop=entropy&auto=format&q=80',
-      isVideo: true,
-      year: '2024'
-    },
-  ];
+  const filters = categories;
 
-  const filters = ['All', 'Photography', 'Video'];
-
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
+  const displayProjects = activeFilter === 'All' 
+    ? featuredProjects 
+    : featuredProjects.filter(project => project.category === activeFilter);
 
   return (
     <section id="work" className="py-20 pb-8 bg-card relative overflow-hidden">
@@ -118,7 +65,7 @@ export const ProjectShowcase = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {filteredProjects.map((project, index) => (
+          {displayProjects.map((project, index) => (
             <div
               key={project.id}
               className="animate-fade-in"
@@ -131,33 +78,47 @@ export const ProjectShowcase = () => {
                 year={project.year}
                 imageUrl={project.imageUrl}
                 isVideo={project.isVideo}
+                onClick={() => navigate(`/projects/${project.id}`)}
               />
             </div>
           ))}
         </div>
 
-        {/* CTA Section */}
-        {/* <div className="text-center">
+        {/* View All Projects CTA */}
+        <div className="text-center">
           <div className="relative max-w-3xl mx-auto">
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-12 hover:border-primary/20 transition-all duration-300">
               <div className="space-y-6">
                 <h3 className="text-3xl sm:text-4xl font-display font-medium leading-tight">
-                  Ready to create something 
-                  <span className="text-primary"> exceptional</span>?
+                  Explore our complete 
+                  <span className="text-primary"> portfolio</span>
                 </h3>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Let's discuss how we can bring your vision to life with the same attention to detail and creative excellence.
+                  Discover more of our work across photography and video projects, with detailed case studies and behind-the-scenes insights.
                 </p>
-                <div className="pt-2">
-                  <Button variant="hero" size="lg" className="group px-8 py-4 text-base">
-                    Start Your Project
+                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+                  <Button 
+                    variant="hero" 
+                    size="lg" 
+                    className="group px-8 py-4 text-base"
+                    onClick={() => navigate('/projects')}
+                  >
+                    View All Projects
                     <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="px-8 py-4 text-base"
+                    onClick={() => navigate('/#contact')}
+                  >
+                    Start Your Project
                   </Button>
                 </div>
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </section>
   );
