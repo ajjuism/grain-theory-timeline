@@ -74,7 +74,7 @@ export const Header = () => {
                 src="/logo.svg" 
                 alt="Grain Theory Logo" 
                 className={`
-                  w-auto transition-all duration-300
+                  w-auto transition-all duration-500 ease-out
                   ${isScrolled ? 'h-5' : 'h-6'}
                   opacity-90 hover:opacity-100
                 `}
@@ -88,10 +88,10 @@ export const Header = () => {
               <button
                 key={item.name}
                 onClick={() => handleNavigation(item)}
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 relative group text-sm font-medium"
+                className="text-foreground/70 hover:text-foreground transition-all duration-500 ease-out relative group text-sm font-medium"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-500 ease-out group-hover:w-full" />
               </button>
             ))}
           </nav>
@@ -102,8 +102,8 @@ export const Header = () => {
               variant="hero" 
               size="sm" 
               className={`
-                transition-all duration-300 text-sm px-6
-                ${isScrolled ? 'py-2' : 'py-2.5'}
+                transition-all duration-500 ease-out text-sm px-6 py-2
+                ${isScrolled ? 'scale-95' : 'scale-100'}
               `}
               onClick={() => setIsContactDialogOpen(true)}
             >

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -6,13 +6,16 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, Calendar, Clock, User, ExternalLink, Play, Quote } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, User, ExternalLink, Play } from 'lucide-react';
 import { getProjectById, projects } from '@/data/projects';
 import { ProjectCard } from '@/components/ProjectCard';
+import { LightboxGallery } from '@/components/LightboxGallery';
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   
   const project = id ? getProjectById(id) : null;
 
@@ -63,17 +66,41 @@ const ProjectDetail = () => {
         {/* Hero Image */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="relative aspect-[21/9] rounded-lg overflow-hidden mb-8">
+            <div 
+              className={`relative aspect-[21/9] rounded-lg overflow-hidden mb-8 ${
+                project.gallery && project.gallery.length > 0 ? 'cursor-pointer group' : ''
+              }`}
+              onClick={() => {
+                if (project.gallery && project.gallery.length > 0) {
+                  // Check if hero image is in gallery, if so open at that index, otherwise at index 0
+                  const heroImageIndex = project.gallery.findIndex(img => img === project.imageUrl);
+                  setLightboxIndex(heroImageIndex >= 0 ? heroImageIndex : 0);
+                  setLightboxOpen(true);
+                }
+              }}
+            >
               <img 
                 src={project.imageUrl} 
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover ${
+                  project.gallery && project.gallery.length > 0 ? 'group-hover:scale-105 transition-transform duration-300' : ''
+                }`}
               />
               {project.isVideo && (
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                   <Button variant="hero" size="lg" className="rounded-full shadow-2xl">
                     <Play className="w-8 h-8" />
                   </Button>
+                </div>
+              )}
+              {/* Clickable gallery indicator */}
+              {project.gallery && project.gallery.length > 0 && !project.isVideo && (
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-4">
+                    <svg className="w-8 h-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
                 </div>
               )}
             </div>
@@ -154,47 +181,48 @@ const ProjectDetail = () => {
                     <Separator />
                     <h3 className="text-xl font-semibold">Project Gallery</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {project.gallery.map((image, index) => (
-                        <div 
-                          key={index} 
-                          className="aspect-[4/3] rounded-lg overflow-hidden"
-                        >
-                          <img 
-                            src={image} 
-                            alt={`${project.title} - Image ${index + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                          />
-                        </div>
-                      ))}
+                      {project.gallery.map((image, index) => {
+                        const isVideo = image.includes('.mp4') || image.includes('.webm') || image.includes('.mov');
+                        return (
+                          <div 
+                            key={index} 
+                            className="aspect-[4/3] rounded-lg overflow-hidden cursor-pointer group relative"
+                            onClick={() => {
+                              setLightboxIndex(index);
+                              setLightboxOpen(true);
+                            }}
+                          >
+                            <img 
+                              src={image} 
+                              alt={`${project.title} - Image ${index + 1}`}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                            {/* Hover overlay */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                                {isVideo ? (
+                                  <Play className="w-6 h-6 text-black" />
+                                ) : (
+                                  <svg className="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                  </svg>
+                                )}
+                              </div>
+                            </div>
+                            {/* Video indicator */}
+                            {isVideo && (
+                              <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs flex items-center gap-1">
+                                <Play className="w-3 h-3" />
+                                Video
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
 
-                {/* Testimonial */}
-                {project.testimonial && (
-                  <div className="space-y-6">
-                    <Separator />
-                    <Card className="p-8 bg-muted/30">
-                      <div className="space-y-4">
-                        <Quote className="w-8 h-8 text-primary" />
-                        <blockquote className="text-lg leading-relaxed italic">
-                          "{project.testimonial.text}"
-                        </blockquote>
-                        <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                            <User className="w-6 h-6 text-primary" />
-                          </div>
-                          <div>
-                            <div className="font-semibold">{project.testimonial.author}</div>
-                            <div className="text-sm text-muted-foreground">
-                              {project.testimonial.position}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  </div>
-                )}
               </div>
 
               {/* Sidebar */}
@@ -309,6 +337,17 @@ const ProjectDetail = () => {
       </main>
 
       <Footer />
+      
+      {/* Lightbox Gallery */}
+      {project.gallery && (
+        <LightboxGallery
+          images={project.gallery}
+          isOpen={lightboxOpen}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxOpen(false)}
+          projectTitle={project.title}
+        />
+      )}
     </div>
   );
 };
