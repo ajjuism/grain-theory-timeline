@@ -12,12 +12,14 @@ import { ArrowLeft, Calendar, Clock, User, ExternalLink, Play } from 'lucide-rea
 import { getProjectById, projects } from '@/data/projects';
 import { ProjectCard } from '@/components/ProjectCard';
 import { LightboxGallery } from '@/components/LightboxGallery';
+import { ContactDialog } from '@/components/ContactDialog';
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigateWithScroll();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
   
   const project = id ? getProjectById(id) : null;
 
@@ -311,18 +313,6 @@ const ProjectDetail = () => {
                     )}
                   </div>
 
-                  {project.projectUrl && (
-                    <div className="pt-2">
-                      <Button 
-                        variant="outline" 
-                        className="w-full"
-                        onClick={() => window.open(project.projectUrl, '_blank')}
-                      >
-                        View Live Project
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </Button>
-                    </div>
-                  )}
                 </Card>
 
                 {/* Contact CTA */}
@@ -335,7 +325,7 @@ const ProjectDetail = () => {
                     <Button 
                       variant="default" 
                       className="w-full"
-                      onClick={() => navigate('/#contact')}
+                      onClick={() => setIsContactDialogOpen(true)}
                     >
                       Get In Touch
                     </Button>
@@ -399,6 +389,12 @@ const ProjectDetail = () => {
           projectTitle={project.title}
         />
       )}
+      
+      {/* Contact Dialog */}
+      <ContactDialog 
+        open={isContactDialogOpen}
+        onOpenChange={setIsContactDialogOpen}
+      />
     </div>
   );
 };

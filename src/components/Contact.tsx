@@ -121,13 +121,6 @@ export const Contact = () => {
               ))}
             </div>
 
-            {/* Quick Action Buttons */}
-            <div className="space-y-4">
-              <Button variant="outline" size="lg" className="w-full group">
-                <Phone className="w-5 h-5 mr-2" />
-                Schedule a Call
-              </Button>
-            </div>
           </div>
 
           {/* Right Content - Contact Form */}

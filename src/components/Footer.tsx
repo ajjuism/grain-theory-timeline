@@ -7,7 +7,7 @@ export const Footer = () => {
   
   const socialLinks = [
     { icon: Instagram, href: 'https://www.instagram.com/graintheoryfilms', label: 'Instagram' },
-    { icon: Twitter, href: 'https://twitter.com/graintheory', label: 'Twitter' },
+    { icon: Twitter, href: 'https://x.com/grain_theory?s=11', label: 'Twitter' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/grain-theory-films/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:hello@graintheory.com', label: 'Email' },
   ];

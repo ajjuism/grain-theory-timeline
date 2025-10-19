@@ -67,9 +67,6 @@ export const About = () => {
               content that elevates brands and drives meaningful engagement with audiences.
             </p>
 
-            <Button variant="hero" size="lg" className="group">
-              Learn More About Us
-            </Button>
           </div>
 
           {/* Right Content - Services */}
