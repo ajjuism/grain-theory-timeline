@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from '@/components/ui/button';
+import { ImageWithSkeleton } from '@/components/ui/image-with-skeleton';
 import { ChevronLeft, ChevronRight, X, Play } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
@@ -125,11 +126,12 @@ export const LightboxGallery = ({
                 }}
               />
             ) : (
-              <img
+              <ImageWithSkeleton
                 src={currentImage}
                 alt={`${projectTitle} - Image ${currentIndex + 1}`}
                 className="max-w-full max-h-full object-contain"
-                onError={(e) => {
+                containerClassName="flex items-center justify-center w-full h-full"
+                onError={() => {
                   console.error('Image failed to load:', currentImage);
                 }}
               />
@@ -164,10 +166,12 @@ export const LightboxGallery = ({
                       : 'border-transparent opacity-60 hover:opacity-80'
                   }`}
                 >
-                  <img
+                  <ImageWithSkeleton
                     src={image}
                     alt={`Thumbnail ${index + 1}`}
                     className="w-full h-full object-cover"
+                    containerClassName="w-full h-full"
+                    showErrorState={false}
                   />
                 </button>
               ))}

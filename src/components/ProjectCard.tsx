@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { ImageWithSkeleton } from '@/components/ui/image-with-skeleton';
 import { Play, ExternalLink } from 'lucide-react';
 import { ProjectCardSkeleton } from './ProjectCardSkeleton';
 
@@ -28,8 +29,6 @@ export const ProjectCard = ({
   isLoading = false,
   animationDelay = 0
 }: ProjectCardProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
   const [cardVisible, setCardVisible] = useState(false);
 
   // Show skeleton while loading
@@ -46,14 +45,6 @@ export const ProjectCard = ({
     return () => clearTimeout(timer);
   }, [animationDelay]);
 
-  // Preload image for better performance
-  React.useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => setImageLoaded(true);
-    img.onerror = () => setImageError(true);
-  }, [imageUrl]);
-
   return (
     <div 
       className={`group project-card relative overflow-hidden rounded-lg bg-background border border-border hover:border-primary/30 hover-glow transition-all duration-300 ${
@@ -63,24 +54,11 @@ export const ProjectCard = ({
     >
       {/* Project Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
-        {/* Image Loading Skeleton */}
-        {!imageLoaded && !imageError && (
-          <div className="absolute inset-0 bg-muted animate-pulse" />
-        )}
-        
-        {/* Error State */}
-        {imageError && (
-          <div className="absolute inset-0 bg-muted flex items-center justify-center">
-            <div className="text-muted-foreground text-sm">Failed to load image</div>
-          </div>
-        )}
-        
-        <img 
+        <ImageWithSkeleton
           src={imageUrl} 
           alt={title}
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+          containerClassName="w-full h-full"
         />
         
         {/* Video Play Button */}

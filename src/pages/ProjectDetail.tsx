@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { ImageWithSkeleton } from '@/components/ui/image-with-skeleton';
 import { ArrowLeft, Calendar, Clock, User, ExternalLink, Play } from 'lucide-react';
 import { getProjectById, projects } from '@/data/projects';
 import { ProjectCard } from '@/components/ProjectCard';
@@ -89,12 +90,13 @@ const ProjectDetail = () => {
                 }
               }}
             >
-              <img 
+              <ImageWithSkeleton
                 src={project.imageUrl} 
                 alt={project.title}
                 className={`w-full h-full object-cover ${
                   project.gallery && project.gallery.length > 0 ? 'group-hover:scale-105 transition-transform duration-300' : ''
                 }`}
+                containerClassName="w-full h-full"
               />
               {project.isVideo && (
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -240,10 +242,11 @@ const ProjectDetail = () => {
                               setLightboxOpen(true);
                             }}
                           >
-                            <img 
+                            <ImageWithSkeleton
                               src={image} 
                               alt={`${project.title} - Image ${index + 1}`}
                               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              containerClassName="w-full h-full"
                             />
                             {/* Hover overlay */}
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">

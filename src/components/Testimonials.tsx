@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import { ImageWithSkeleton } from '@/components/ui/image-with-skeleton';
 
 interface Testimonial {
   id: number;
@@ -87,10 +88,12 @@ export const Testimonials = () => {
               {/* Author Info */}
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-muted border-2 border-primary/20 flex-shrink-0">
-                  <img 
+                  <ImageWithSkeleton
                     src={testimonial.image} 
                     alt={testimonial.name}
                     className="w-full h-full object-cover object-center"
+                    containerClassName="w-full h-full"
+                    showErrorState={false}
                   />
                 </div>
                 <div>

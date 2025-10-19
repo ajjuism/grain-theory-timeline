@@ -10,15 +10,20 @@ import { Separator } from '@/components/ui/separator';
 import { Search, Filter, Grid, List, Play, ExternalLink } from 'lucide-react';
 import { projects, categories, tags, getProjectsByCategory, getProjectsByTag } from '@/data/projects';
 import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ProjectListing = () => {
   const navigate = useNavigateWithScroll();
+  const isMobile = useIsMobile();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Force grid view on mobile
+  const effectiveViewMode = isMobile ? 'grid' : viewMode;
 
   const filteredProjects = useMemo(() => {
     let filtered = getProjectsByCategory(selectedCategory);
@@ -211,22 +216,25 @@ const ProjectListing = () => {
                     Showing {filteredProjects.length} of {projects.length} projects
                   </div>
                   
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant={viewMode === 'grid' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setViewMode('grid')}
-                    >
-                      <Grid className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant={viewMode === 'list' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setViewMode('list')}
-                    >
-                      <List className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  {/* Hide toggle buttons on mobile */}
+                  {!isMobile && (
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant={viewMode === 'grid' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setViewMode('grid')}
+                      >
+                        <Grid className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant={viewMode === 'list' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setViewMode('list')}
+                      >
+                        <List className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Active Filters */}
@@ -275,7 +283,7 @@ const ProjectListing = () => {
                 {/* Projects Display */}
                 {isLoading || isInitialLoad ? (
                   <div className={`
-                    ${viewMode === 'grid' 
+                    ${effectiveViewMode === 'grid' 
                       ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8' 
                       : 'space-y-6'
                     }
@@ -283,13 +291,13 @@ const ProjectListing = () => {
                     {Array.from({ length: 6 }, (_, index) => (
                       <ProjectCardSkeleton 
                         key={`skeleton-${selectedCategory}-${selectedTags.join('-')}-${index}`}
-                        viewMode={viewMode}
+                        viewMode={effectiveViewMode}
                       />
                     ))}
                   </div>
                 ) : filteredProjects.length > 0 ? (
                   <div className={`
-                    ${viewMode === 'grid' 
+                    ${effectiveViewMode === 'grid' 
                       ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8' 
                       : 'space-y-6'
                     }
@@ -298,7 +306,7 @@ const ProjectListing = () => {
                       <div
                         key={`${selectedCategory}-${selectedTags.join('-')}-${project.id}`}
                       >
-                        {viewMode === 'grid' ? (
+                        {effectiveViewMode === 'grid' ? (
                           <ProjectCard
                             title={project.title}
                             category={project.category}
