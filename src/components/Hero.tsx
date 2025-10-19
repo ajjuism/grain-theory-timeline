@@ -3,10 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Timeline } from './Timeline';
 import { ContactDialog } from '@/components/ContactDialog';
 import { ArrowRight, Play, Camera, Video, Award, Users } from 'lucide-react';
+import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
 import heroImage from '@/assets/hero-image.jpg';
 
 export const Hero = () => {
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const navigate = useNavigateWithScroll();
 
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -65,7 +67,12 @@ export const Hero = () => {
                   Start Project
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <Button variant="outline" size="lg" className="group text-base px-8 py-4">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="group text-base px-8 py-4"
+                  onClick={() => navigate('/projects')}
+                >
                   <Play className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
                   View Portfolio
                 </Button>

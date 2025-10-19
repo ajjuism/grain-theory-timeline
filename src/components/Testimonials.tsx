@@ -14,30 +14,30 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sarah Chen",
-    role: "Creative Director",
-    company: "Modern Brands Co.",
-    content: "Grain Theory transformed our brand vision into stunning visual content. Their attention to detail and creative approach exceeded our expectations. The team's professionalism and ability to capture our essence was remarkable.",
+    name: "Athul",
+    role: "Head of Brand & Community",
+    company: "Cult",
+    content: "​​Have worked with Navaneeth on a large number of projects at cult across lifestyle shoots, event coverage & video production. He’s a top notch collaborator, and brings in a keen eye for creative expression and agility. In some of our most unstructured events involving India’s top celebrities, he has found a way to capture moments that have travelled virally on the internet. He’s quick to grasp what the brand is looking to achieve, and finds a way to transpire that into execution with minimal back & forths. Outstanding partner to have for any brand, and I wish him the very best",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+    image: "/src/assets/thumbnails/atul.jpeg"
   },
   {
     id: 2,
-    name: "Marcus Rodriguez",
-    role: "Founder & CEO",
-    company: "TechFlow Innovations",
-    content: "Working with Grain Theory was a game-changer for our product launch. Their video production quality and storytelling ability helped us connect with our audience in ways we never imagined possible.",
+    name: "Deepti",
+    role: "Sr. Manager - Marketing, Product Strategy & Consumer Insights",
+    company: "The Lalit Ashok",
+    content: "Working with Navneeth was an absolute breeze. He's sharp, reliable, and genuinely makes the whole process enjoyable. The photography and videography were completely safe in his hands during our project at The Lalit Ashok, and everything from planning to delivery was perfectly on point. He's open to ideas, super easy to work with, and brings this calm, fun energy that makes everyone around him do their best. Truly someone you'd want on your team.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+    image: "/src/assets/thumbnails/deepti.jpeg"
   },
   {
     id: 3,
-    name: "Emily Watson",
-    role: "Marketing Manager",
-    company: "Sustainable Solutions",
-    content: "The photography work delivered by Grain Theory elevated our entire marketing campaign. Every shot was perfectly composed and aligned with our brand values. Truly exceptional creative partners.",
+    name: "Krishna",
+    role: "CEO & Founder",
+    company: "Weavers Stores",
+    content: "I'm thoroughly impressed with the photography services provided for Weavers Stores' brand catalogue and campaign shoot. The images captured are of high quality, showcasing our clothing line in a captivating and visually appealing manner. The way the clothes are presented makes them look really nice, which has significantly enhanced our website and social media presence. Navneet's attention to detail, creativity and professionalism were evident throughout the shoot. I highly recommend his services to anyone looking for exceptional product photography.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face"
+    image: "/src/assets/thumbnails/krishna.jpeg"
   }
 ];
 
@@ -86,11 +86,11 @@ export const Testimonials = () => {
 
               {/* Author Info */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-muted border-2 border-primary/20">
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-muted border-2 border-primary/20 flex-shrink-0">
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <div>
@@ -106,26 +106,6 @@ export const Testimonials = () => {
           ))}
         </div>
 
-        {/* Stats Row */}
-        <div className="mt-16 pt-16 border-t border-border/30">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { label: 'Happy Clients', value: '150+' },
-              { label: 'Projects Completed', value: '300+' },
-              { label: 'Years Experience', value: '8+' },
-              { label: 'Average Rating', value: '4.9' }
-            ].map((stat, index) => (
-              <div key={index} className="space-y-2 animate-fade-in" style={{ animationDelay: `${0.5 + index * 0.1}s` }}>
-                <div className="text-2xl md:text-3xl font-display font-medium text-primary">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground font-body">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

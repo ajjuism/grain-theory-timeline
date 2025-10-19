@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ContactDialog } from '@/components/ContactDialog';
 import { Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigateWithScroll();
   const location = useLocation();
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export const Header = () => {
           <div className="flex items-center">
             <button
               onClick={() => navigate('/')}
-              className="transition-all duration-300 hover:scale-105"
+              className=""
             >
               <img 
                 src="/logo.svg" 
@@ -76,7 +77,7 @@ export const Header = () => {
                 className={`
                   w-auto transition-all duration-500 ease-out
                   ${isScrolled ? 'h-5' : 'h-6'}
-                  opacity-90 hover:opacity-100
+                  opacity-90
                 `}
               />
             </button>

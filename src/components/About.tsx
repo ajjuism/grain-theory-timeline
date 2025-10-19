@@ -96,26 +96,6 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Stats Section */}
-        <div className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-border/50">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            {[
-              { number: '150+', label: 'Projects Completed' },
-              { number: '50+', label: 'Happy Clients' },
-              { number: '98%', label: 'Client Satisfaction' },
-              { number: '5+', label: 'Years Experience' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center group animate-fade-in" style={{ animationDelay: `${index * 0.1 + 0.5}s` }}>
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-1 sm:mb-2 font-display group-hover:scale-105 transition-transform duration-300">
-                  {stat.number}
-                </div>
-                <div className="text-xs sm:text-sm text-muted-foreground font-body">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

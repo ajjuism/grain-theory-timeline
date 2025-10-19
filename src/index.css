@@ -201,6 +201,117 @@
     box-shadow: var(--shadow-glow);
   }
 
+  /* Loading and transition improvements */
+  .loading-shimmer {
+    background: linear-gradient(90deg, 
+      hsl(var(--muted)) 0%, 
+      hsl(var(--muted) / 0.5) 50%, 
+      hsl(var(--muted)) 100%);
+    background-size: 200px 100%;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+  }
+
+  /* Smooth project card transitions */
+  .project-card-enter {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  .project-card-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.4s ease-out;
+  }
+
+  .project-card-exit {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .project-card-exit-active {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.3s ease-in;
+  }
+
+  /* Enhanced hover effects for project cards */
+  .project-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Smooth grid transitions */
+  .projects-grid {
+    transition: all 0.3s ease-out;
+  }
+
+  .projects-grid > * {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Prevent layout shift during loading */
+  .skeleton-container {
+    min-height: 400px;
+  }
+
+  /* Animation keyframes */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out forwards;
+  }
+
+  /* Optimized animations for better performance */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in {
+      animation-fill-mode: both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-in-left {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /* Mobile responsive improvements */
   @media (max-width: 768px) {
     .timeline-bar {
@@ -209,6 +320,10 @@
     
     .editor-panel {
       padding: 1rem;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
     }
   }
 }

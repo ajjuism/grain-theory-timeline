@@ -2,20 +2,23 @@ import React, { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ProjectCard } from '@/components/ProjectCard';
+import { ProjectCardSkeleton } from '@/components/ProjectCardSkeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Search, Filter, Grid, List, Play, ExternalLink } from 'lucide-react';
 import { projects, categories, tags, getProjectsByCategory, getProjectsByTag } from '@/data/projects';
-import { useNavigate } from 'react-router-dom';
+import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
 
 const ProjectListing = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateWithScroll();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const filteredProjects = useMemo(() => {
     let filtered = getProjectsByCategory(selectedCategory);
@@ -40,18 +43,58 @@ const ProjectListing = () => {
     return filtered;
   }, [selectedCategory, selectedTags, searchQuery]);
 
+  // Handle initial load
+  React.useEffect(() => {
+    // Scroll to top when page loads
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+    
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
+    if (isLoading) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedTags(prev => 
+        prev.includes(tag) 
+          ? prev.filter(t => t !== tag)
+          : [...prev, tag]
+      );
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+    }, 300);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    if (category === selectedCategory || isLoading) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedCategory(category);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+    }, 300);
   };
 
   const clearAllFilters = () => {
-    setSelectedCategory('All');
-    setSelectedTags([]);
-    setSearchQuery('');
+    if (isLoading) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedCategory('All');
+      setSelectedTags([]);
+      setSearchQuery('');
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+    }, 300);
   };
 
   const handleProjectClick = (projectId: string) => {
@@ -109,7 +152,7 @@ const ProjectListing = () => {
                       {categories.map(category => (
                         <button
                           key={category}
-                          onClick={() => setSelectedCategory(category)}
+                          onClick={() => handleCategoryChange(category)}
                           className={`
                             w-full text-left px-3 py-2 rounded-md text-sm transition-colors duration-200
                             ${selectedCategory === category 
@@ -230,7 +273,21 @@ const ProjectListing = () => {
                 )}
 
                 {/* Projects Display */}
-                {filteredProjects.length > 0 ? (
+                {isLoading || isInitialLoad ? (
+                  <div className={`
+                    ${viewMode === 'grid' 
+                      ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8' 
+                      : 'space-y-6'
+                    }
+                  `}>
+                    {Array.from({ length: 6 }, (_, index) => (
+                      <ProjectCardSkeleton 
+                        key={`skeleton-${selectedCategory}-${selectedTags.join('-')}-${index}`}
+                        viewMode={viewMode}
+                      />
+                    ))}
+                  </div>
+                ) : filteredProjects.length > 0 ? (
                   <div className={`
                     ${viewMode === 'grid' 
                       ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8' 
@@ -239,9 +296,7 @@ const ProjectListing = () => {
                   `}>
                     {filteredProjects.map((project, index) => (
                       <div
-                        key={project.id}
-                        className="animate-fade-in"
-                        style={{ animationDelay: `${index * 0.1}s` }}
+                        key={`${selectedCategory}-${selectedTags.join('-')}-${project.id}`}
                       >
                         {viewMode === 'grid' ? (
                           <ProjectCard
@@ -252,6 +307,7 @@ const ProjectListing = () => {
                             imageUrl={project.imageUrl}
                             isVideo={project.isVideo}
                             onClick={() => handleProjectClick(project.id)}
+                            animationDelay={isInitialLoad ? 0 : index * 0.05}
                           />
                         ) : (
                           /* List View */

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Instagram, Twitter, Linkedin, Mail } from 'lucide-react';
+import { ContactDialog } from '@/components/ContactDialog';
 
 export const Footer = () => {
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  
   const socialLinks = [
-    { icon: Instagram, href: 'https://instagram.com/graintheory', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/graintheoryfilms', label: 'Instagram' },
     { icon: Twitter, href: 'https://twitter.com/graintheory', label: 'Twitter' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/graintheory', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/grain-theory-films/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:hello@graintheory.com', label: 'Email' },
   ];
 
@@ -13,10 +16,10 @@ export const Footer = () => {
     {
       title: 'Services',
       links: [
-        { name: 'Commercial Photography', href: '#' },
-        { name: 'Video Production', href: '#' },
-        { name: 'Creative Direction', href: '#' },
-        { name: 'Post-Production', href: '#' },
+        { name: 'Commercial Photography', href: null, isText: true },
+        { name: 'Video Production', href: null, isText: true },
+        { name: 'Creative Direction', href: null, isText: true },
+        { name: 'Post-Production', href: null, isText: true },
       ],
     },
     {
@@ -25,16 +28,13 @@ export const Footer = () => {
         { name: 'About Us', href: '#about' },
         { name: 'Our Work', href: '#work' },
         { name: 'Contact', href: '#contact' },
-        { name: 'Careers', href: '#' },
       ],
     },
     {
       title: 'Resources',
       links: [
-        { name: 'Blog', href: '#' },
-        { name: 'Case Studies', href: '#' },
-        { name: 'FAQ', href: '#' },
-        { name: 'Support', href: '#' },
+        { name: 'FAQ', href: '/faq' },
+        { name: 'Support', href: null, isAction: 'contact' },
       ],
     },
   ];
@@ -85,13 +85,30 @@ export const Footer = () => {
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a
-                      href={link.href}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-body"
-                    >
-                      {link.name}
-                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
-                    </a>
+                    {link.isText ? (
+                      // Plain text for services (no link)
+                      <span className="text-muted-foreground font-body">
+                        {link.name}
+                      </span>
+                    ) : link.isAction === 'contact' ? (
+                      // Button for Support (opens contact modal)
+                      <button
+                        onClick={() => setIsContactDialogOpen(true)}
+                        className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-body"
+                      >
+                        {link.name}
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                      </button>
+                    ) : (
+                      // Regular link
+                      <a
+                        href={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-body"
+                      >
+                        {link.name}
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -113,13 +130,13 @@ export const Footer = () => {
           </div>
           
           <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-body">
+            <a href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors font-body">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-body">
+            <a href="/terms-of-service" className="text-muted-foreground hover:text-primary transition-colors font-body">
               Terms of Service
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-body">
+            <a href="/cookies" className="text-muted-foreground hover:text-primary transition-colors font-body">
               Cookies
             </a>
           </div>
@@ -144,6 +161,11 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen} 
+      />
     </footer>
   );
 };

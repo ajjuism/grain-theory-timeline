@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -13,11 +14,20 @@ import { LightboxGallery } from '@/components/LightboxGallery';
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const navigate = useNavigateWithScroll();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   
   const project = id ? getProjectById(id) : null;
+
+  // Ensure page starts at top when component mounts or project changes
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+  }, [id]); // Re-run when project ID changes
 
   if (!project) {
     return (
@@ -175,11 +185,49 @@ const ProjectDetail = () => {
                   </div>
                 )}
 
+                {/* Videos Section */}
+                {project.videos && project.videos.length > 0 && (
+                  <div className="space-y-6">
+                    <Separator />
+                    <h3 className="text-xl font-semibold">Event Videos</h3>
+                    <div className="grid grid-cols-1 gap-6">
+                      {project.videos.map((videoUrl, index) => {
+                        // Convert YouTube URL to embed format
+                        const getEmbedUrl = (url: string) => {
+                          if (url.includes('youtu.be/')) {
+                            const videoId = url.split('youtu.be/')[1].split('?')[0];
+                            return `https://www.youtube.com/embed/${videoId}`;
+                          } else if (url.includes('youtube.com/watch?v=')) {
+                            const videoId = url.split('v=')[1].split('&')[0];
+                            return `https://www.youtube.com/embed/${videoId}`;
+                          }
+                          return url;
+                        };
+
+                        return (
+                          <div key={index} className="space-y-3">
+                            <div className="aspect-video rounded-lg overflow-hidden bg-black">
+                              <iframe
+                                src={getEmbedUrl(videoUrl)}
+                                title={`${project.title} - Video ${index + 1}`}
+                                className="w-full h-full"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
                 {/* Gallery */}
                 {project.gallery && project.gallery.length > 0 && (
                   <div className="space-y-6">
                     <Separator />
-                    <h3 className="text-xl font-semibold">Project Gallery</h3>
+                    <h3 className="text-xl font-semibold">Photo Gallery</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {project.gallery.map((image, index) => {
                         const isVideo = image.includes('.mp4') || image.includes('.webm') || image.includes('.mov');

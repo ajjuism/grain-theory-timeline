@@ -10,51 +10,51 @@ interface Brand {
 const brands: Brand[] = [
   {
     id: 1,
-    name: "TechFlow",
-    logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=200&h=100&fit=crop",
-    category: "Technology"
+    name: "Brand 1",
+    logo: "/src/assets/logos/Group 1.png",
+    category: "Client"
   },
   {
     id: 2,
-    name: "Modern Brands",
-    logo: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=200&h=100&fit=crop",
-    category: "Fashion"
+    name: "Brand 2",
+    logo: "/src/assets/logos/Group 2.png",
+    category: "Client"
   },
   {
     id: 3,
-    name: "Sustainable Solutions",
-    logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=100&fit=crop",
-    category: "Environment"
+    name: "Brand 3",
+    logo: "/src/assets/logos/Group 3.png",
+    category: "Client"
   },
   {
     id: 4,
-    name: "Creative Studio",
-    logo: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=200&h=100&fit=crop",
-    category: "Design"
+    name: "Brand 4",
+    logo: "/src/assets/logos/Group 4.png",
+    category: "Client"
   },
   {
     id: 5,
-    name: "FinanceFlow",
-    logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=100&fit=crop",
-    category: "Finance"
-  },
-  {
-    id: 6,
-    name: "HealthTech",
-    logo: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&h=100&fit=crop",
-    category: "Healthcare"
+    name: "Brand 5",
+    logo: "/src/assets/logos/Group 5.png",
+    category: "Client"
   },
   {
     id: 7,
-    name: "EcoVentures",
-    logo: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=200&h=100&fit=crop",
-    category: "Startups"
+    name: "Brand 7",
+    logo: "/src/assets/logos/Group 7.png",
+    category: "Client"
   },
   {
-    id: 8,
-    name: "Global Enterprises",
-    logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=100&fit=crop",
-    category: "Enterprise"
+    id: 9,
+    name: "Brand 9",
+    logo: "/src/assets/logos/Group 9.png",
+    category: "Client"
+  },
+  {
+    id: 10,
+    name: "Brand 10",
+    logo: "/src/assets/logos/Group 10.png",
+    category: "Client"
   }
 ];
 
@@ -78,7 +78,7 @@ export const BrandShowcase = () => {
             {duplicatedBrands.map((brand, index) => (
               <div 
                 key={`${brand.id}-${index}`}
-                className="flex-shrink-0 w-32 h-16 flex items-center justify-center mx-8"
+                className="flex-shrink-0 w-48 h-24 flex items-center justify-center mx-8"
               >
                 <img 
                   src={brand.logo} 

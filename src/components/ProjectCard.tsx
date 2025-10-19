@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, ExternalLink } from 'lucide-react';
+import { ProjectCardSkeleton } from './ProjectCardSkeleton';
 
 interface ProjectCardProps {
   title: string;
@@ -11,6 +12,8 @@ interface ProjectCardProps {
   isVideo?: boolean;
   className?: string;
   onClick?: () => void;
+  isLoading?: boolean;
+  animationDelay?: number;
 }
 
 export const ProjectCard = ({ 
@@ -21,19 +24,63 @@ export const ProjectCard = ({
   imageUrl, 
   isVideo = false,
   className = "",
-  onClick
+  onClick,
+  isLoading = false,
+  animationDelay = 0
 }: ProjectCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [cardVisible, setCardVisible] = useState(false);
+
+  // Show skeleton while loading
+  if (isLoading) {
+    return <ProjectCardSkeleton className={className} />;
+  }
+
+  // Delay card visibility to prevent flicker
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setCardVisible(true);
+    }, animationDelay * 1000);
+    
+    return () => clearTimeout(timer);
+  }, [animationDelay]);
+
+  // Preload image for better performance
+  React.useEffect(() => {
+    const img = new Image();
+    img.src = imageUrl;
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => setImageError(true);
+  }, [imageUrl]);
+
   return (
     <div 
-      className={`group relative overflow-hidden rounded-lg bg-background border border-border hover:border-primary/30 transition-all duration-300 hover-glow ${className} ${onClick ? 'cursor-pointer' : ''}`}
+      className={`group project-card relative overflow-hidden rounded-lg bg-background border border-border hover:border-primary/30 hover-glow transition-all duration-300 ${
+        cardVisible ? 'animate-fade-in opacity-100' : 'opacity-0'
+      } ${className} ${onClick ? 'cursor-pointer' : ''}`}
       onClick={onClick}
     >
       {/* Project Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
+        {/* Image Loading Skeleton */}
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 bg-muted animate-pulse" />
+        )}
+        
+        {/* Error State */}
+        {imageError && (
+          <div className="absolute inset-0 bg-muted flex items-center justify-center">
+            <div className="text-muted-foreground text-sm">Failed to load image</div>
+          </div>
+        )}
+        
         <img 
           src={imageUrl} 
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
         
         {/* Video Play Button */}

@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProjectCard } from './ProjectCard';
+import { ProjectCardSkeleton } from './ProjectCardSkeleton';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Filter } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
 import { projects, categories } from '@/data/projects';
 
 export const ProjectShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('All');
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const navigate = useNavigateWithScroll();
 
   const filters = categories;
 
@@ -15,6 +18,30 @@ export const ProjectShowcase = () => {
   const displayProjects = activeFilter === 'All' 
     ? featuredProjects 
     : featuredProjects.filter(project => project.category === activeFilter);
+
+  // Handle initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle filter changes with loading animation
+  const handleFilterChange = (filter: string) => {
+    if (filter === activeFilter || isLoading) return;
+    
+    setIsLoading(true);
+    
+    // Longer delay to ensure smooth transition
+    setTimeout(() => {
+      setActiveFilter(filter);
+      // Additional delay before showing new content
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+    }, 400);
+  };
 
   return (
     <section id="work" className="py-20 pb-8 bg-card relative overflow-hidden">
@@ -42,17 +69,20 @@ export const ProjectShowcase = () => {
         {/* Filter Tabs */}
         <div className="flex items-center justify-center mb-12">
           <div className="inline-flex bg-muted/30 backdrop-blur-sm border border-border rounded-full p-1">
-            {filters.map((filter) => (
+            {filters.map((filter, index) => (
               <button
                 key={filter}
                 className={`
-                  relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300
+                  relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 animate-fade-in
                   ${activeFilter === filter 
                     ? 'text-background bg-foreground shadow-lg' 
                     : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
                   }
+                  ${isLoading ? 'pointer-events-none opacity-50' : ''}
                 `}
-                onClick={() => setActiveFilter(filter)}
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleFilterChange(filter)}
+                disabled={isLoading}
               >
                 {filter}
                 {activeFilter === filter && (
@@ -64,14 +94,18 @@ export const ProjectShowcase = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {displayProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+        <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {isLoading || isInitialLoad ? (
+            // Show skeleton loaders during filter transitions and initial load
+            Array.from({ length: 6 }, (_, index) => (
+              <ProjectCardSkeleton 
+                key={`skeleton-${activeFilter}-${index}`}
+              />
+            ))
+          ) : (
+            displayProjects.map((project, index) => (
               <ProjectCard
+                key={`${activeFilter}-${project.id}`}
                 title={project.title}
                 category={project.category}
                 client={project.client}
@@ -79,9 +113,10 @@ export const ProjectShowcase = () => {
                 imageUrl={project.imageUrl}
                 isVideo={project.isVideo}
                 onClick={() => navigate(`/projects/${project.id}`)}
+                animationDelay={isInitialLoad ? 0 : index * 0.05}
               />
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* View All Projects CTA */}
@@ -110,7 +145,12 @@ export const ProjectShowcase = () => {
                     variant="outline" 
                     size="lg" 
                     className="px-8 py-4 text-base"
-                    onClick={() => navigate('/#contact')}
+                    onClick={() => {
+                      const contactSection = document.querySelector('#contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                   >
                     Start Your Project
                   </Button>
