@@ -11,49 +11,49 @@ const brands: Brand[] = [
   {
     id: 1,
     name: "Brand 1",
-    logo: "/src/assets/logos/Group 1.png",
+    logo: "/assets/logos/Group 1.png",
     category: "Client"
   },
   {
     id: 2,
     name: "Brand 2",
-    logo: "/src/assets/logos/Group 2.png",
+    logo: "/assets/logos/Group 2.png",
     category: "Client"
   },
   {
     id: 3,
     name: "Brand 3",
-    logo: "/src/assets/logos/Group 3.png",
+    logo: "/assets/logos/Group 3.png",
     category: "Client"
   },
   {
     id: 4,
     name: "Brand 4",
-    logo: "/src/assets/logos/Group 4.png",
+    logo: "/assets/logos/Group 4.png",
     category: "Client"
   },
   {
     id: 5,
     name: "Brand 5",
-    logo: "/src/assets/logos/Group 5.png",
+    logo: "/assets/logos/Group 5.png",
     category: "Client"
   },
   {
     id: 7,
     name: "Brand 7",
-    logo: "/src/assets/logos/Group 7.png",
+    logo: "/assets/logos/Group 7.png",
     category: "Client"
   },
   {
     id: 9,
     name: "Brand 9",
-    logo: "/src/assets/logos/Group 9.png",
+    logo: "/assets/logos/Group 9.png",
     category: "Client"
   },
   {
     id: 10,
     name: "Brand 10",
-    logo: "/src/assets/logos/Group 10.png",
+    logo: "/assets/logos/Group 10.png",
     category: "Client"
   }
 ];
