@@ -88,7 +88,7 @@ export const Contact = () => {
           <div className="space-y-6 animate-slide-in-left">
             <div className="space-y-6">
               {[
-                { icon: Mail, label: 'Email', value: 'hello@graintheory.com', href: 'mailto:hello@graintheory.com' },
+                { icon: Mail, label: 'Email', value: 'graintheoryfilms@gmail.com', href: 'mailto:graintheoryfilms@gmail.com' },
                 { icon: Phone, label: 'Phone', value: '+91 90360 43152', href: 'tel:+919036043152' },
                 { icon: Clock, label: 'Response Time', value: 'Within 24 hours', href: null },
               ].map((contact, index) => (
