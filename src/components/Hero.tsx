@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Timeline } from './Timeline';
 import { ContactDialog } from '@/components/ContactDialog';
-import { ArrowRight, Play, Camera, Video, Award, Users } from 'lucide-react';
+import { HeroShowcase } from './HeroShowcase';
+import { ArrowRight, Play } from 'lucide-react';
 import { useNavigateWithScroll } from '@/hooks/use-navigate-with-scroll';
 import heroImage from '@/assets/hero-image.jpg';
 
@@ -79,50 +80,9 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Right Side - Services */}
-            <div className="lg:col-span-2 space-y-6 animate-slide-in-left mb-12 lg:mb-0">
-              {[
-                { 
-                  icon: Camera, 
-                  title: 'Photography', 
-                  description: 'Commercial and brand photography that captures attention.'
-                },
-                { 
-                  icon: Video, 
-                  title: 'Video Production', 
-                  description: 'From concept to post-production, complete video solutions.'
-                },
-                { 
-                  icon: Award, 
-                  title: 'Creative Direction', 
-                  description: 'Strategic visual storytelling aligned with your brand.'
-                },
-                { 
-                  icon: Users, 
-                  title: 'Collaboration', 
-                  description: 'Working seamlessly with your team throughout the process.'
-                },
-              ].map((service, index) => (
-                <div 
-                  key={index} 
-                  className="editor-panel p-6 hover:bg-editor-panel-dark transition-all duration-300 group animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors font-display">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed font-body">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            {/* Right Side - Interactive Showcase */}
+            <div className="lg:col-span-2 animate-slide-in-left mb-12 lg:mb-0">
+              <HeroShowcase />
             </div>
           </div>
         </div>

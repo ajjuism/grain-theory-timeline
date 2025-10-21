@@ -75,7 +75,11 @@ export const BrandShowcase = () => {
 
         {/* Animated Logo Scroll */}
         <div className="relative overflow-hidden">
-          <div className="flex animate-scroll">
+          {/* Fade gradients */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex animate-scroll sm:animate-scroll-desktop">
             {duplicatedBrands.map((brand, index) => (
               <div 
                 key={`${brand.id}-${index}`}

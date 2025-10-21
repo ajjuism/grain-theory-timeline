@@ -148,10 +148,17 @@ export const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span>Project Timeline</span>
+              <span>Designed & Developed by</span>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full animate-timeline-pulse" />
-                <span>Ready for Production</span>
+                <a 
+                  href="https://www.pxl8.studio/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors duration-200 font-medium"
+                >
+                  pxl8.studio
+                </a>
               </div>
             </div>
             

@@ -178,19 +178,27 @@
            100% { left: 100%; }
          }
 
-         /* Brand scroll animation */
-         @keyframes scroll {
-           0% { transform: translateX(0); }
-           100% { transform: translateX(-50%); }
-         }
+        /* Brand scroll animation */
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
 
-         .animate-scroll {
-           animation: scroll 30s linear infinite;
-         }
+        .animate-scroll {
+          animation: scroll 20s linear infinite; /* Faster on mobile */
+        }
 
-         .animate-scroll:hover {
-           animation-play-state: paused;
-         }
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+
+        .animate-scroll-desktop {
+          animation: scroll 25s linear infinite; /* Faster on desktop too */
+        }
+
+        .animate-scroll-desktop:hover {
+          animation-play-state: paused;
+        }
 
   /* Hover glow effect */
   .hover-glow {
