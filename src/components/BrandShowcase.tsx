@@ -83,7 +83,7 @@ export const BrandShowcase = () => {
             {duplicatedBrands.map((brand, index) => (
               <div 
                 key={`${brand.id}-${index}`}
-                className="flex-shrink-0 w-48 h-24 flex items-center justify-center mx-8"
+                className="flex-shrink-0 w-48 h-24 flex items-center justify-center mx-2 sm:mx-8"
               >
                 <ImageWithSkeleton
                   src={brand.logo} 

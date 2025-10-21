@@ -32,7 +32,7 @@ export const Hero = () => {
       {/* Main Content Container */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full pt-32">
-          <div className="grid lg:grid-cols-5 gap-16 items-center">
+          <div className="grid lg:grid-cols-5 gap-2 lg:gap-16 items-center">
             
             {/* Left Side - Content */}
             <div className="lg:col-span-3 space-y-8 animate-fade-in">
@@ -81,7 +81,7 @@ export const Hero = () => {
             </div>
 
             {/* Right Side - Interactive Showcase */}
-            <div className="lg:col-span-2 animate-slide-in-left mb-12 lg:mb-0">
+            <div className="lg:col-span-2 animate-slide-in-left mb-0">
               <HeroShowcase />
             </div>
           </div>

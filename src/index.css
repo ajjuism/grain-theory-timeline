@@ -185,7 +185,7 @@
         }
 
         .animate-scroll {
-          animation: scroll 20s linear infinite; /* Faster on mobile */
+          animation: scroll 12s linear infinite; /* Much faster on mobile */
         }
 
         .animate-scroll:hover {
