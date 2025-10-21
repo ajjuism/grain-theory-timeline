@@ -14,7 +14,7 @@ interface ShowcaseImage {
 export const HeroShowcase = () => {
   // Combined curated image collection from all projects - moved to top
   const images: ShowcaseImage[] = [
-    { src: '/assets/photography/gamekraft/DSC09914.jpg', alt: 'GameKraft Event Photography', category: 'Event', client: 'GameKraft' },
+    { src: '/assets/photography/gamekraft/DSC00002.jpg', alt: 'GameKraft Event Photography', category: 'Event', client: 'GameKraft' },
     { src: '/assets/photography/hyatt/Room 1.jpg', alt: 'Hyatt Hotel Photography', category: 'Hospitality', client: 'Hyatt' },
     { src: '/assets/photography/lalit/day(1)-11.jpg', alt: 'Lalit Hotel Photography', category: 'Hospitality', client: 'The Lalit' },
     { src: '/assets/photography/bigbang/Ambience-1.jpg', alt: 'BigBang Production', category: 'Event', client: 'BigBang' },
